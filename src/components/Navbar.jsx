@@ -37,8 +37,8 @@ export default function Navbar({
             <span className="font-editorial text-base sm:text-lg tracking-[0.1em] font-semibold text-[#1F2421] leading-none uppercase">
               Zion Inn
             </span>
-            <span className="text-[9px] tracking-[0.2em] uppercase text-[#6B726C] font-medium leading-tight mt-0.5">
-              Homestay
+            <span className="text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#6B726C] font-semibold leading-tight mt-0.5 whitespace-nowrap">
+              Family-Run Luxury Homestay
             </span>
           </div>
         </a>

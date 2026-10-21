@@ -98,6 +98,37 @@ export const ATTRACTIONS_LIST = [
     bestTime: 'Morning (9:00 AM - 1:00 PM)'
   },
   {
+    id: 'thirparappu-waterfalls',
+    name: 'Thirparappu Waterfalls',
+    distance: '24 km',
+    category: 'Waterfalls',
+    image: '/images/thirparappu-waterfalls.webp',
+    description: 'A 50-foot cascading multi-tiered waterfall fed by the Kodayar River, featuring a picturesque bathing pool and the historic Lord Shiva temple.',
+    driveTime: '38 min drive',
+    bestTime: 'Morning (9:00 AM - 1:00 PM)'
+  },
+  {
+    id: 'thiruvithancode-arappally',
+    name: 'Historical Thomayar Kovil (Thiruvithancode Arappally)',
+    distance: '3.7 km',
+    category: 'Spiritual Heritage',
+    image: '/images/thiruvithancode-arappally.webp',
+    description: 'Ancient historic stone church built around 64 AD by St. Thomas, disciple of Jesus Christ. Known as Arappally or Thomayar Kovil, it is venerated as one of the oldest standing church monuments in the world.',
+    driveTime: '8 min drive',
+    bestTime: 'Morning (8:00 AM - 12:00 PM) or Evening (4:00 PM - 7:00 PM)'
+  },
+  {
+    id: 'periya-nayagi-shrine',
+    name: 'Periya Nayagi Annai Shrine (Church of Ascension)',
+    tamilName: 'பெரிய நாயகி அன்னை திருத்தலம், திருவிதாங்கோடு',
+    distance: '3.1 km',
+    category: 'Spiritual Heritage',
+    image: '/images/church-of-ascension.webp',
+    description: 'Historic Church of the Ascension of Our Lord and sacred pilgrimage shrine of Periya Nayagi Annai (பெரிய நாயகி அன்னை திருத்தலம், திருவிதாங்கோடு), celebrated for its peaceful atmosphere and spiritual heritage.',
+    driveTime: '7 min drive',
+    bestTime: 'Morning or Evening'
+  },
+  {
     id: 'muttom',
     name: 'Muttom Rocky Beach & Lighthouse',
     distance: '11.6 km',
@@ -168,16 +199,6 @@ export const ATTRACTIONS_LIST = [
     bestTime: 'Morning (8:00 AM - 11:00 AM) or Sunset'
   },
   {
-    id: 'thirparappu-waterfalls',
-    name: 'Thirparappu Waterfalls',
-    distance: '24 km',
-    category: 'Waterfalls',
-    image: '/images/thirparappu-waterfalls.webp',
-    description: 'A 50-foot cascading multi-tiered waterfall fed by the Kodayar River, featuring a picturesque bathing pool and the historic Lord Shiva temple.',
-    driveTime: '38 min drive',
-    bestTime: 'Morning (9:00 AM - 1:00 PM)'
-  },
-  {
     id: 'kalikesam-forest-river',
     name: 'Kalikesam Forest & River',
     distance: '32 km',
@@ -239,6 +260,7 @@ export const POLICIES = {
 
 export const CONTACT_INFO = {
   name: 'Zion Inn Homestay',
+  subtitle: 'Family-Run Luxury Homestay',
   tagline: 'Stay. Relax. Feel at Home.',
   accreditation: 'Ministry of Tourism Approved',
   addressLine1: 'Zion Inn Homestay, Neyyoor',

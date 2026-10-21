@@ -104,6 +104,30 @@ const GALLERY_ITEMS = [
     caption: '16th-century wooden architectural marvel of the Travancore Maharajas, just 12 mins from Zion Inn.'
   },
   {
+    id: 'thirparappu-waterfalls',
+    image: '/images/thirparappu-waterfalls.webp',
+    title: 'Thirparappu Waterfalls',
+    category: 'excursions',
+    categoryLabel: 'Nearby Sights',
+    caption: 'A 50-foot cascading multi-tiered waterfall fed by the Kodayar River, featuring a picturesque bathing pool and the historic Lord Shiva temple.'
+  },
+  {
+    id: 'thiruvithancode-arappally',
+    image: '/images/thiruvithancode-arappally.webp',
+    title: 'Historical Thomayar Kovil (Thiruvithancode Arappally)',
+    category: 'excursions',
+    categoryLabel: 'Nearby Sights',
+    caption: 'Historical Thomayar Kovil built around 64 AD by St. Thomas, disciple of Jesus Christ. World-renowned ancient heritage church, just 8 mins from Zion Inn.'
+  },
+  {
+    id: 'periya-nayagi-shrine',
+    image: '/images/church-of-ascension.webp',
+    title: 'பெரிய நாயகி அன்னை திருத்தலம் (Ascension Church)',
+    category: 'excursions',
+    categoryLabel: 'Nearby Sights',
+    caption: 'Revered Catholic pilgrimage shrine of Periya Nayagi Annai (பெரிய நாயகி அன்னை திருத்தலம், திருவிதாங்கோடு) and Church of Ascension of Our Lord, 7 mins away.'
+  },
+  {
     id: 'muttom-beach',
     image: '/images/muttom-beach.webp',
     title: 'Muttom Rocky Beach & Lighthouse',
@@ -158,14 +182,6 @@ const GALLERY_ITEMS = [
     category: 'excursions',
     categoryLabel: 'Nearby Sights',
     caption: 'Enchanting Kerala backwaters with motorized boat cruises through dense mangrove estuaries leading to the golden sand beach and Neyyar river.'
-  },
-  {
-    id: 'thirparappu-waterfalls',
-    image: '/images/thirparappu-waterfalls.webp',
-    title: 'Thirparappu Waterfalls',
-    category: 'excursions',
-    categoryLabel: 'Nearby Sights',
-    caption: 'A 50-foot cascading multi-tiered waterfall fed by the Kodayar River, featuring a picturesque bathing pool and the historic Lord Shiva temple.'
   },
   {
     id: 'kalikesam-forest-river',

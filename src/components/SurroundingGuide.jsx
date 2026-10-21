@@ -131,6 +131,11 @@ export default function SurroundingGuide() {
                 <h3 className="font-editorial text-2xl font-medium text-[#1F2421] mb-1">
                   {item.name}
                 </h3>
+                {item.tamilName && (
+                  <p className="text-xs text-[#3A4B3D] font-medium mb-1.5">
+                    {item.tamilName}
+                  </p>
+                )}
                 <p className="text-xs text-[#5D645E] font-medium tracking-wide">
                   {item.distance} • {item.category}
                 </p>
@@ -168,9 +173,14 @@ export default function SurroundingGuide() {
               <span className="text-xs uppercase tracking-wider text-[#5D645E] font-semibold">
                 {selectedAttraction.distance} • {selectedAttraction.category}
               </span>
-              <h3 className="font-editorial text-2xl font-medium text-[#1F2421] mt-1 mb-3">
+              <h3 className="font-editorial text-2xl font-medium text-[#1F2421] mt-1 mb-1">
                 {selectedAttraction.name}
               </h3>
+              {selectedAttraction.tamilName && (
+                <p className="text-xs font-semibold text-[#3A4B3D] mb-3">
+                  {selectedAttraction.tamilName}
+                </p>
+              )}
               <p className="text-sm text-[#5D645E] leading-relaxed mb-4">
                 {selectedAttraction.description}
               </p>
