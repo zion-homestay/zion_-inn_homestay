@@ -35,10 +35,10 @@ export default function Navbar({
           />
           <div className="flex flex-col text-left">
             <span className="font-editorial text-base sm:text-lg tracking-[0.1em] font-semibold text-[#1F2421] leading-none uppercase">
-              Zion Inn
+              Zion Inn Rooms
             </span>
-            <span className="text-[8px] sm:text-[9px] tracking-[0.16em] uppercase text-[#6B726C] font-semibold leading-tight mt-0.5 whitespace-nowrap">
-              Family-Run Luxury Homestay
+            <span className="text-[7.5px] sm:text-[8.5px] tracking-[0.13em] sm:tracking-[0.15em] uppercase text-[#6B726C] font-semibold leading-tight mt-0.5 whitespace-nowrap">
+              A Family-Run Luxury Homestay
             </span>
           </div>
         </a>

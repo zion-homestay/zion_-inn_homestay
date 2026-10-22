@@ -260,7 +260,7 @@ export const POLICIES = {
 
 export const CONTACT_INFO = {
   name: 'Zion Inn Homestay',
-  subtitle: 'Family-Run Luxury Homestay',
+  subtitle: 'A Family-Run Luxury Homestay',
   tagline: 'Stay. Relax. Feel at Home.',
   accreditation: 'Ministry of Tourism Approved',
   addressLine1: 'Zion Inn Homestay, Neyyoor',

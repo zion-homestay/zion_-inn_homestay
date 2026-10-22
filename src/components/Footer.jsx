@@ -25,10 +25,10 @@ export default function Footer({ onNavigate }) {
             </div>
             <div className="text-left">
               <span className="font-editorial text-lg font-semibold tracking-wider block leading-none uppercase">
-                Zion Inn
+                Zion Inn Rooms
               </span>
               <span className="text-[9.5px] tracking-widest uppercase text-white/80 font-medium block mt-1">
-                Family-Run Luxury Homestay
+                A Family-Run Luxury Homestay
               </span>
               <span className="inline-flex items-center gap-1 text-[10px] text-emerald-300 font-medium mt-1">
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />

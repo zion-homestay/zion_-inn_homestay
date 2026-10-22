@@ -56,10 +56,10 @@ export default function MobileNavDrawer({
                   />
                   <div>
                     <span className="font-editorial text-base font-semibold tracking-wider text-[#1F2421] block leading-none uppercase">
-                      Zion Inn
+                      Zion Inn Rooms
                     </span>
-                    <span className="text-[9px] tracking-widest uppercase text-[#5D645E] font-medium block mt-0.5">
-                      Family-Run Luxury Homestay
+                    <span className="text-[8.5px] tracking-widest uppercase text-[#5D645E] font-medium block mt-0.5">
+                      A Family-Run Luxury Homestay
                     </span>
                   </div>
                 </a>
