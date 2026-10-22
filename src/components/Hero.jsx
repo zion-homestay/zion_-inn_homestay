@@ -49,7 +49,7 @@ export default function Hero({
       {/* Background Hero Banner matching reference image */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
         <motion.img
-          src="/images/hero-banner2.png"
+          src="/images/hero-banner-v3.png"
           alt="Zion Inn Homestay Neyyoor Veranda"
           className="w-full h-full object-cover object-[center_right] sm:object-center"
           initial={{ scale: 1.03, opacity: 0 }}

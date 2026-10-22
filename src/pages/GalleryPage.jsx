@@ -17,7 +17,7 @@ import { subtleFadeUp } from '../utils/animations';
 const GALLERY_ITEMS = [
   {
     id: 'hero-banner',
-    image: '/images/hero-banner2.png',
+    image: '/images/hero-banner-v3.png',
     title: 'The Veranda at Dawn',
     category: 'spaces',
     categoryLabel: 'Verandas & Gardens',

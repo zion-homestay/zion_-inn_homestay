@@ -16,7 +16,7 @@ export function getLodgingBusinessSchema() {
     checkinTime: '14:00',
     checkoutTime: '11:00',
     image: [
-      `${BASE_URL}/images/hero-banner2.png`,
+      `${BASE_URL}/images/hero-banner-v3.png`,
       `${BASE_URL}/images/ac-room1.jpg`,
       `${BASE_URL}/images/the-space.jpg`,
       `${BASE_URL}/images/reception.jpg`
