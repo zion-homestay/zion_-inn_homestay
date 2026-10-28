@@ -50,8 +50,11 @@ export default function MobileNavDrawer({
                   className="flex items-center gap-2.5 cursor-pointer"
                 >
                   <img 
-                    src="/images/logo.png" 
+                    src="/images/logo.webp" 
                     alt="Zion Inn Homestay" 
+                    width="36"
+                    height="36"
+                    decoding="async"
                     className="w-9 h-9 object-contain"
                   />
                   <div>

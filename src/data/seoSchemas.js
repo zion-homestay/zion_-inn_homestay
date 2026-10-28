@@ -1,24 +1,29 @@
-export const BASE_URL = 'https://zioninnhomestay.in';
+export const BASE_URL = 'https://zion-homestay.com';
 
-export function getLodgingBusinessSchema() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'LodgingBusiness',
+export function getLodgingBusinessSchema(faqs = null) {
+  const lodgingEntity = {
+    '@type': ['LodgingBusiness', 'BedAndBreakfast'],
     '@id': `${BASE_URL}/#homestay`,
     name: 'Zion Inn Homestay',
-    alternateName: ['Zion Inn', 'Zion Inn Neyyoor', 'Zion Inn Homestay Kanyakumari'],
-    description: 'A tranquil sanctuary homestay in Neyyoor, Kanyakumari (Ministry of Tourism Approved). Handcrafted king bedrooms, air conditioning, private balconies, 24/7 power backup, and serene gardens near Eraniel and Padmanabhapuram Palace.',
+    alternateName: [
+      'Zion Inn Rooms',
+      'Zion Inn',
+      'Zion Inn Neyyoor',
+      'Zion Inn Homestay Kanyakumari',
+      'சீயோன் இன் ஹோம்ஸ்டே'
+    ],
+    description: 'Ministry of Tourism approved family homestay in Neyyoor, Kanyakumari. Handcrafted AC and Non-AC king bedrooms, private verandas, 24/7 power backup, high-speed fiber Wi-Fi, and gated parking—just 750 m from Eraniel Railway Station and 6.9 km from Padmanabhapuram Palace.',
     award: 'Ministry of Tourism Approved',
     url: `${BASE_URL}/`,
     telephone: ['+918148437600', '+919385668505'],
     email: 'zioninn.bnb@gmail.com',
     priceRange: '₹1000 - ₹1200',
-    checkinTime: '14:00',
-    checkoutTime: '11:00',
+    checkinTime: '14:00:00+05:30',
+    checkoutTime: '11:00:00+05:30',
     image: [
-      `${BASE_URL}/images/hero-banner-v3.png`,
-      `${BASE_URL}/images/ac-room1.jpg`,
-      `${BASE_URL}/images/the-space.jpg`,
+      `${BASE_URL}/images/hero-banner-v3.webp`,
+      `${BASE_URL}/images/ac-room1.webp`,
+      `${BASE_URL}/images/the-space.webp`,
       `${BASE_URL}/images/reception.jpg`
     ],
     address: {
@@ -34,6 +39,23 @@ export function getLodgingBusinessSchema() {
       latitude: 8.2145,
       longitude: 77.2918
     },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Neyyoor',
+        '@id': 'https://www.wikidata.org/wiki/Q7021677'
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Kanyakumari District',
+        '@id': 'https://www.wikidata.org/wiki/Q15155'
+      },
+      {
+        '@type': 'LandmarksOrHistoricalBuildings',
+        name: 'Padmanabhapuram Palace',
+        '@id': 'https://www.wikidata.org/wiki/Q2231267'
+      }
+    ],
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'High-speed Fiber Wi-Fi', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Air Conditioning', value: true },
@@ -75,6 +97,31 @@ export function getLodgingBusinessSchema() {
     },
     sameAs: [
       'https://maps.google.com/?q=Neyyoor,+Kanyakumari+District,+Tamil+Nadu+629802'
+    ]
+  };
+
+  if (!faqs || faqs.length === 0) {
+    return {
+      '@context': 'https://schema.org',
+      ...lodgingEntity
+    };
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      lodgingEntity,
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.a
+          }
+        }))
+      }
     ]
   };
 }

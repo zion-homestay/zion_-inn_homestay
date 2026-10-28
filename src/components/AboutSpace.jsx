@@ -21,12 +21,15 @@ export default function AboutSpace({ onOpenStory }) {
             <span>Ministry of Tourism Approved</span>
           </div>
 
-          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421] leading-[1.15] mb-6">
-            More than just a stay, it's a feeling.
+          <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421] leading-[1.15] mb-3">
+            A Peaceful Homestay in Neyyoor for Families &amp; Travelers
           </h2>
+          <p className="font-editorial italic text-base sm:text-lg text-[#3A4B3D] mb-4">
+            More than just a stay, it's a feeling.
+          </p>
 
           <p className="text-base sm:text-lg text-[#5D645E] leading-relaxed mb-8">
-            Zion Inn is a peaceful homestay in Neyyoor, crafted for travelers who love calm, comfort and a personal touch. Located close to Eraniel, it's the perfect stop for families, friends and explorers looking for a home away from home.
+            Starting from ₹1,000 per night with our two kids stay free policy, Zion Inn is a family-run retreat in Neyyoor crafted for comfort and peace. Situated just 750 m from Eraniel Railway Station, guests enjoy handcrafted king beds, breezy verandas, and quick access to Padmanabhapuram Palace (6.9 km) and Muttom Beach (11.6 km).
           </p>
 
           <button
@@ -47,10 +50,13 @@ export default function AboutSpace({ onOpenStory }) {
         >
           <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#EAE5DB] bg-[#EAE5DB]/30 aspect-[4/3] group">
             <img 
-              src="/images/the-space.jpg" 
+              src="/images/the-space.webp" 
               alt="Zion Inn veranda and garden courtyard" 
+              width="800"
+              height="533"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
               loading="lazy"
+              decoding="async"
             />
             {/* Subtle Gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20 pointer-events-none" />

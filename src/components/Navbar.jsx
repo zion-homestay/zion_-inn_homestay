@@ -29,8 +29,11 @@ export default function Navbar({
           className="flex items-center gap-2.5 group cursor-pointer"
         >
           <img 
-            src="/images/logo.png" 
+            src="/images/logo.webp" 
             alt="Zion Inn Homestay Logo" 
+            width="36"
+            height="36"
+            decoding="async"
             className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform group-hover:scale-105"
           />
           <div className="flex flex-col text-left">

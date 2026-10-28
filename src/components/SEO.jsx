@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export const SITE_DOMAIN = 'https://zioninnhomestay.in';
+export const SITE_DOMAIN = 'https://zion-homestay.com';
 export const SITE_NAME = 'Zion Inn Homestay';
 
 export default function SEO({

@@ -31,9 +31,15 @@ export default function Amenities() {
         viewport={{ once: true, margin: '-80px' }}
         variants={subtleFadeUp}
       >
-        <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421]">
-          Everything you need, nothing you don't.
+        <span className="text-xs uppercase tracking-[0.16em] font-semibold text-[#3A4B3D] block mb-2">
+          Comfort &amp; Convenience
+        </span>
+        <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421] mb-3">
+          Homestay Amenities: High-Speed Fiber Wi-Fi, 24/7 Power &amp; Gated Parking
         </h2>
+        <p className="text-sm sm:text-base text-[#5D645E] max-w-2xl leading-relaxed">
+          Everything you need for a restful stay in Neyyoor. Enjoy uninterrupted power backup, dual-band fiber internet, private verandas, secure on-premises parking, and tranquil flowering gardens.
+        </p>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
@@ -81,8 +87,11 @@ export default function Amenities() {
         >
           <div className="relative lg:absolute lg:-top-20 lg:bottom-0 lg:left-0 lg:right-0 w-full h-[380px] lg:h-auto rounded-3xl overflow-hidden shadow-lg border border-[#EAE5DB] bg-[#EAE5DB]/30 group">
             <img
-              src="/images/simple-comforts.jpg"
+              src="/images/simple-comforts.webp"
               alt="Homestay cozy chair with sunlight and plants"
+              width="545"
+              height="730"
+              decoding="async"
               className="w-full h-full object-cover object-[center_12%] transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />

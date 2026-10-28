@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Users, ChevronRight, Check, ShieldCheck } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 
 export default function Hero({ 
   checkInDate, 
@@ -48,14 +47,16 @@ export default function Hero({
     <section className="relative w-full min-h-[780px] lg:min-h-[880px] overflow-hidden flex flex-col justify-between -mt-[76px] sm:-mt-[88px] pt-[100px] sm:pt-[120px] pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-8">
       {/* Background Hero Banner matching reference image */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-        <motion.img
-          src="/images/hero-banner-v3.png"
+        <img
+          src="/images/hero-banner-v3.webp"
+          srcSet="/images/hero-banner-v3-mobile.webp 768w, /images/hero-banner-v3.webp 1360w"
+          sizes="100vw"
           alt="Zion Inn Homestay Neyyoor Veranda"
+          width="1360"
+          height="896"
           className="w-full h-full object-cover object-[center_right] sm:object-center"
-          initial={{ scale: 1.03, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1.0] }}
           loading="eager"
+          decoding="async"
           fetchPriority="high"
         />
         {/* Soft light gradient on the left for maximum text contrast and legibility */}
@@ -66,31 +67,30 @@ export default function Hero({
       {/* Main Content Area */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
         {/* Editorial Text Block aligned to match reference image */}
-        <motion.div 
-          className="max-w-xl text-left my-auto pt-6 sm:pt-10 lg:pt-16 pb-4"
-          initial="hidden"
-          animate="visible"
-          variants={subtleFadeUp}
-        >
-          {/* Official Accreditation Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#EAE5DB] shadow-xs text-xs font-semibold text-[#3A4B3D] mb-4 w-fit">
-            <ShieldCheck className="w-4 h-4 text-emerald-700" strokeWidth={2} />
-            <span>Ministry of Tourism Approved</span>
+        <div className="max-w-xl text-left my-auto pt-6 sm:pt-10 lg:pt-16 pb-4">
+          {/* Official Accreditation Badge & SEO Entity H1 */}
+          <div className="mb-4 sm:mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#EAE5DB] shadow-xs text-xs sm:text-[13px] font-medium text-[#222E25] w-fit">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" strokeWidth={2} />
+              <span>Ministry of Tourism Approved</span>
+            </div>
+            <h1 className="sr-only">
+              Family-Run Luxury Homestay in Neyyoor, Kanyakumari – Zion Inn Rooms
+            </h1>
           </div>
 
           {/* Heading - exact editorial serif style matching reference image */}
-          <h1 className="font-editorial text-5xl sm:text-6xl lg:text-[70px] xl:text-[76px] font-normal tracking-[-0.02em] text-[#19211A] leading-[1.04] mb-4 sm:mb-5">
+          <h2 className="font-editorial text-5xl sm:text-6xl lg:text-[72px] xl:text-[80px] font-normal tracking-[-0.02em] text-[#19211A] leading-[1.04] mb-4 sm:mb-6">
             Your quiet<br />
             sanctuary in<br />
             Neyyoor
-          </h1>
+          </h2>
 
-          {/* Subtext - 2 lines, clean and understated */}
-          <p className="text-base sm:text-lg text-[#2D352F] font-normal leading-[1.55] max-w-md">
-            Comfortable stays. Warm hospitality.<br className="hidden sm:inline" />
-            A place that feels like home.
+          {/* Subtext matching user reference */}
+          <p className="text-base sm:text-lg lg:text-xl text-[#2D352F] font-normal leading-relaxed max-w-md">
+            Comfortable stays. Warm hospitality.<br className="hidden sm:inline" /> A place that feels like home.
           </p>
-        </motion.div>
+        </div>
 
         {/* Floating Search Bar centered horizontally with comfortable width to prevent button overflow */}
         <motion.div 
@@ -148,10 +148,13 @@ export default function Hero({
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider font-semibold text-[#6B726C] mb-1">
+                        <label htmlFor="hero-check-in-date" className="block text-[10px] uppercase tracking-wider font-semibold text-[#6B726C] mb-1">
                           Check in
                         </label>
                         <input
+                          id="hero-check-in-date"
+                          name="checkInDate"
+                          aria-label="Check-in Date"
                           type="date"
                           value={checkInDate}
                           onChange={(e) => setCheckInDate(e.target.value)}
@@ -159,10 +162,13 @@ export default function Hero({
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider font-semibold text-[#6B726C] mb-1">
+                        <label htmlFor="hero-check-out-date" className="block text-[10px] uppercase tracking-wider font-semibold text-[#6B726C] mb-1">
                           Check out
                         </label>
                         <input
+                          id="hero-check-out-date"
+                          name="checkOutDate"
+                          aria-label="Check-out Date"
                           type="date"
                           value={checkOutDate}
                           onChange={(e) => setCheckOutDate(e.target.value)}

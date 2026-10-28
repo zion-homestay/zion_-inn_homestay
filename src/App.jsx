@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import MobileNavDrawer from './components/MobileNavDrawer';
 import Hero from './components/Hero';
@@ -8,13 +8,10 @@ import RoomDetailDrawer from './components/RoomDetailDrawer';
 import Amenities from './components/Amenities';
 import SurroundingGuide from './components/SurroundingGuide';
 import BookingContact from './components/BookingContact';
+import HomeFaq from './components/HomeFaq';
 import MobileStickyBar from './components/MobileStickyBar';
 import StoryModal from './components/StoryModal';
 import Footer from './components/Footer';
-import RoomsPage from './pages/RoomsPage';
-import GalleryPage from './pages/GalleryPage';
-import ContactPage from './pages/ContactPage';
-import NotFoundPage from './pages/NotFoundPage';
 import SEO from './components/SEO';
 import { 
   getLodgingBusinessSchema, 
@@ -23,6 +20,12 @@ import {
   getContactSchema 
 } from './data/seoSchemas';
 import { INITIAL_ROOMS, HOMESTAY_FAQS } from './data/homestayData';
+
+// Code-split non-home secondary pages for minimal initial bundle and zero TBT
+const RoomsPage = lazy(() => import('./pages/RoomsPage'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Helper to determine route from current pathname and hash
 function resolveCurrentRoute() {
@@ -182,71 +185,86 @@ export default function App() {
 
       {/* Main Content Sections: Conditionally render Rooms, Gallery, Contact, Homepage, or 404 */}
       <main className="flex-1 w-full">
-        {currentPage === 'rooms' && (
-          <>
-            <SEO 
-              title="Rooms & Rates | Zion Inn Homestay Neyyoor, Kanyakumari"
-              description="Spacious AC & Non-AC rooms with handcrafted king beds, en-suite bathrooms, fiber Wi-Fi & verandas in Neyyoor. Direct booking rates from ₹1000."
-              path="/rooms"
-              schema={getRoomsSchema(rooms)}
-            />
-            <RoomsPage 
-              rooms={rooms}
-              onSelectRoom={(room) => setSelectedRoomForDrawer(room)}
-              onNavigateHome={() => handleNavigate('home')}
-              checkInDate={checkInDate}
-              setCheckInDate={setCheckInDate}
-              checkOutDate={checkOutDate}
-              setCheckOutDate={setCheckOutDate}
-              guestCount={guestCount}
-              setGuestCount={setGuestCount}
-            />
-          </>
-        )}
+        <Suspense fallback={
+          <div className="min-h-[50vh] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full border-2 border-[#3A4B3D]/20 border-t-[#3A4B3D] animate-spin" />
+          </div>
+        }>
+          {currentPage === 'rooms' && (
+            <>
+              <SEO 
+                title="Rooms & Rates | Zion Inn Homestay Neyyoor, Kanyakumari"
+                description="Spacious AC & Non-AC rooms with handcrafted king beds, en-suite bathrooms, fiber Wi-Fi & verandas in Neyyoor. Direct booking rates from ₹1000."
+                path="/rooms"
+                schema={getRoomsSchema(rooms)}
+              />
+              <RoomsPage 
+                rooms={rooms}
+                onSelectRoom={(room) => setSelectedRoomForDrawer(room)}
+                onNavigateHome={() => handleNavigate('home')}
+                checkInDate={checkInDate}
+                setCheckInDate={setCheckInDate}
+                checkOutDate={checkOutDate}
+                setCheckOutDate={setCheckOutDate}
+                guestCount={guestCount}
+                setGuestCount={setGuestCount}
+              />
+            </>
+          )}
 
-        {currentPage === 'gallery' && (
-          <>
-            <SEO 
-              title="Photo Gallery | Zion Inn Homestay Neyyoor & Attractions"
-              description="Explore photos of Zion Inn Homestay rooms, flowering garden, verandas, plus Padmanabhapuram Palace, Muttom Beach, and local Kanyakumari highlights."
-              path="/gallery"
-              schema={getGallerySchema()}
-            />
-            <GalleryPage 
+          {currentPage === 'gallery' && (
+            <>
+              <SEO 
+                title="Photo Gallery | Zion Inn Homestay Neyyoor & Attractions"
+                description="Explore photos of Zion Inn Homestay rooms, flowering garden, verandas, plus Padmanabhapuram Palace, Muttom Beach, and local Kanyakumari highlights."
+                path="/gallery"
+                schema={getGallerySchema()}
+              />
+              <GalleryPage 
+                onNavigateHome={() => handleNavigate('home')}
+                onNavigateRooms={() => handleNavigate('rooms')}
+              />
+            </>
+          )}
+
+          {currentPage === 'contact' && (
+            <>
+              <SEO 
+                title="Contact & Location | Zion Inn Homestay Neyyoor"
+                description="Reach Zion Inn Homestay in Neyyoor, Kanyakumari. Just 750 m from Eraniel Railway Station. WhatsApp direct booking, room inquiries, route directions & FAQs."
+                path="/contact"
+                schema={getContactSchema(HOMESTAY_FAQS)}
+              />
+              <ContactPage 
+                onNavigateHome={() => handleNavigate('home')}
+                onNavigateRooms={() => handleNavigate('rooms')}
+                checkInDate={checkInDate}
+                setCheckInDate={setCheckInDate}
+                checkOutDate={checkOutDate}
+                setCheckOutDate={setCheckOutDate}
+                guestCount={guestCount}
+                setGuestCount={setGuestCount}
+              />
+            </>
+          )}
+
+          {currentPage === '404' && (
+            <NotFoundPage 
               onNavigateHome={() => handleNavigate('home')}
               onNavigateRooms={() => handleNavigate('rooms')}
+              onNavigateGallery={() => handleNavigate('gallery')}
+              onNavigateContact={() => handleNavigate('contact')}
             />
-          </>
-        )}
-
-        {currentPage === 'contact' && (
-          <>
-            <SEO 
-              title="Contact & Location | Zion Inn Homestay Neyyoor"
-              description="Reach Zion Inn Homestay in Neyyoor, Kanyakumari. Just 750 m from Eraniel Railway Station. WhatsApp direct booking, room inquiries, route directions & FAQs."
-              path="/contact"
-              schema={getContactSchema(HOMESTAY_FAQS)}
-            />
-            <ContactPage 
-              onNavigateHome={() => handleNavigate('home')}
-              onNavigateRooms={() => handleNavigate('rooms')}
-              checkInDate={checkInDate}
-              setCheckInDate={setCheckInDate}
-              checkOutDate={checkOutDate}
-              setCheckOutDate={setCheckOutDate}
-              guestCount={guestCount}
-              setGuestCount={setGuestCount}
-            />
-          </>
-        )}
+          )}
+        </Suspense>
 
         {currentPage === 'home' && (
           <>
             <SEO 
-              title="Zion Inn Homestay Neyyoor | Peaceful Stay in Kanyakumari"
-              description="Tranquil homestay in Neyyoor, Kanyakumari. Handcrafted king bedrooms, AC, private balconies, Wi-Fi & gardens near Eraniel & Padmanabhapuram Palace."
+              title="Zion Inn Homestay Neyyoor | Family Rooms Near Eraniel &amp; Padmanabhapuram"
+              description="Ministry of Tourism approved family homestay in Neyyoor, Kanyakumari. AC king rooms from ₹1,000/night, 2 kids free, fiber Wi-Fi &amp; parking. 750 m to Eraniel Station. Book direct."
               path="/"
-              schema={getLodgingBusinessSchema()}
+              schema={getLodgingBusinessSchema(HOMESTAY_FAQS)}
             />
 
             {/* Hero Section */}
@@ -277,7 +295,10 @@ export default function App() {
             {/* 06. Surrounding Guide Section */}
             <SurroundingGuide />
 
-            {/* 07. Booking & Contact Section */}
+            {/* 07. FAQ Section */}
+            <HomeFaq />
+
+            {/* 08. Booking & Contact Section */}
             <BookingContact 
               rooms={rooms}
               selectedRoom={selectedRoomForDrawer}
@@ -286,15 +307,6 @@ export default function App() {
               guestCount={guestCount}
             />
           </>
-        )}
-
-        {currentPage === '404' && (
-          <NotFoundPage 
-            onNavigateHome={() => handleNavigate('home')}
-            onNavigateRooms={() => handleNavigate('rooms')}
-            onNavigateGallery={() => handleNavigate('gallery')}
-            onNavigateContact={() => handleNavigate('contact')}
-          />
         )}
       </main>
 

@@ -112,11 +112,14 @@ export default function BookingContact({
             <form onSubmit={handleOpenWhatsApp} className="space-y-4">
               {/* Your Name */}
               <div>
-                <label className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="booking-guest-name" className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
                   Your Name
                 </label>
                 <input
+                  id="booking-guest-name"
+                  name="name"
                   type="text"
+                  aria-label="Your Name"
                   placeholder="John Doe"
                   value={guestName}
                   onChange={(e) => setGuestName(e.target.value)}
@@ -126,10 +129,13 @@ export default function BookingContact({
 
               {/* Room Choice */}
               <div>
-                <label className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="booking-room-select" className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
                   Selected Room
                 </label>
                 <select
+                  id="booking-room-select"
+                  name="roomType"
+                  aria-label="Select Room Type"
                   value={activeRoomId}
                   onChange={(e) => setSelectedRoomIdOverride(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-[#EAE5DB] bg-[#FBF9F5] text-sm text-[#1F2421] focus:outline-none focus:border-[#3A4B3D] focus:ring-1 focus:ring-[#3A4B3D] transition-all cursor-pointer"
@@ -144,10 +150,13 @@ export default function BookingContact({
 
               {/* Message (optional) */}
               <div>
-                <label className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="booking-message-textarea" className="block text-xs font-semibold text-[#1F2421] mb-1.5 uppercase tracking-wider">
                   Message (optional)
                 </label>
                 <textarea
+                  id="booking-message-textarea"
+                  name="message"
+                  aria-label="Special requests or message"
                   rows={3}
                   value={currentMessage}
                   onChange={(e) => setUserEditedMessage(e.target.value)}
@@ -230,9 +239,10 @@ export default function BookingContact({
                   href={CONTACT_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="View Zion Inn Homestay on Google Maps"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#3A4B3D] hover:underline group"
                 >
-                  <span>View on Google Maps</span>
+                  <span>View Zion Inn Homestay on Google Maps</span>
                   <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
                 </a>
               </div>

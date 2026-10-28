@@ -18,8 +18,11 @@ export default function Footer({ onNavigate }) {
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-white/95 p-1 flex items-center justify-center shadow-xs">
               <img 
-                src="/images/logo.png" 
+                src="/images/logo.webp" 
                 alt="Zion Inn Homestay" 
+                width="36"
+                height="36"
+                decoding="async"
                 className="w-full h-full object-contain"
               />
             </div>

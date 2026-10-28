@@ -1,5 +1,18 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://zioninnhomestay.in/sitemap.xml
+# AI Search Engines & Retrieval Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemaps & AI Knowledge Digests
+Sitemap: https://zion-homestay.com/sitemap.xml

@@ -151,6 +151,9 @@ export default function RoomsPage({
             <div className="flex flex-wrap items-center gap-1.5 bg-[#F5F2EB] px-3 py-1.5 rounded-xl border border-[#EAE5DB]/80 text-xs text-[#222623] max-w-full">
               <Calendar className="w-3.5 h-3.5 text-[#3A4B3D] shrink-0" strokeWidth={1.5} />
               <input
+                id="rooms-checkin-date"
+                name="checkInDate"
+                aria-label="Check-in Date"
                 type="date"
                 value={checkInDate}
                 onChange={(e) => setCheckInDate(e.target.value)}
@@ -158,6 +161,9 @@ export default function RoomsPage({
               />
               <span className="text-[#6B726C]">–</span>
               <input
+                id="rooms-checkout-date"
+                name="checkOutDate"
+                aria-label="Check-out Date"
                 type="date"
                 value={checkOutDate}
                 onChange={(e) => setCheckOutDate(e.target.value)}

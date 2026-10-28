@@ -17,7 +17,7 @@ import { subtleFadeUp } from '../utils/animations';
 const GALLERY_ITEMS = [
   {
     id: 'hero-banner',
-    image: '/images/hero-banner-v3.png',
+    image: '/images/hero-banner-v3.webp',
     title: 'The Veranda at Dawn',
     category: 'spaces',
     categoryLabel: 'Verandas & Gardens',
@@ -25,7 +25,7 @@ const GALLERY_ITEMS = [
   },
   {
     id: 'ac-room-bed',
-    image: '/images/ac-room1.jpg',
+    image: '/images/ac-room1.webp',
     title: 'AC Room — King Bed',
     category: 'rooms',
     categoryLabel: 'Rooms & Suites',
@@ -57,7 +57,7 @@ const GALLERY_ITEMS = [
   },
   {
     id: 'non-ac-room-view',
-    image: '/images/non-ac room2 view2.jpg',
+    image: '/images/non-ac-room2-view2.webp',
     title: 'Non-AC Room — Garden Outlook',
     category: 'rooms',
     categoryLabel: 'Rooms & Suites',
@@ -89,7 +89,7 @@ const GALLERY_ITEMS = [
   },
   {
     id: 'the-space',
-    image: '/images/the-space.jpg',
+    image: '/images/the-space.webp',
     title: 'Heritage Garden Courtyard',
     category: 'spaces',
     categoryLabel: 'The Homestay',
@@ -371,6 +371,9 @@ export default function GalleryPage({ onNavigateHome, onNavigateRooms }) {
                   <img
                     src={item.image}
                     alt={item.title}
+                    width="600"
+                    height="450"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />

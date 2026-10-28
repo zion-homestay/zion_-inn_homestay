@@ -26,7 +26,7 @@ function renderHeader() {
     <header class="fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 px-4 sm:px-8">
       <nav aria-label="Main Navigation" class="bg-white/95 rounded-full px-5 py-2.5 sm:px-7 sm:py-3 flex items-center justify-between border border-[#EAE5DB] max-w-4xl mx-auto shadow-sm">
         <a href="/" class="flex items-center gap-2.5">
-          <img src="/images/logo.png" alt="Zion Inn Homestay" class="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+          <img src="/images/logo.webp" alt="Zion Inn Homestay" width="36" height="36" class="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
           <div class="flex flex-col text-left">
             <span class="font-semibold text-base sm:text-lg text-[#1F2421] leading-none uppercase">Zion Inn</span>
             <span class="text-[9px] uppercase text-[#6B726C] font-medium leading-tight mt-0.5 tracking-wider">Homestay</span>
@@ -52,7 +52,7 @@ function renderFooter() {
           <div>
             <div class="flex items-center gap-3 mb-4">
               <span class="p-1 rounded bg-[#FBF9F5]/10 inline-flex">
-                <img src="/images/logo.png" alt="Zion Inn Homestay" class="w-8 h-8 object-contain" />
+                <img src="/images/logo.webp" alt="Zion Inn Homestay" width="36" height="36" class="w-8 h-8 object-contain" />
               </span>
               <span class="text-xl font-semibold text-white tracking-wider">ZION INN</span>
             </div>
@@ -101,23 +101,48 @@ const routes = [
   {
     path: '/',
     outputPath: path.join(distDir, 'index.html'),
-    title: 'Zion Inn Homestay Neyyoor | Peaceful Stay in Kanyakumari',
-    description: 'Tranquil homestay in Neyyoor, Kanyakumari. Handcrafted king bedrooms, AC, private balconies, Wi-Fi & gardens near Eraniel & Padmanabhapuram Palace.',
+    title: 'Zion Inn Homestay Neyyoor | Family Rooms Near Eraniel & Padmanabhapuram',
+    description: 'Ministry of Tourism approved family homestay in Neyyoor, Kanyakumari. AC king rooms from ₹1,000/night, 2 kids free, fiber Wi-Fi & parking. 750 m to Eraniel Station. Book direct.',
     canonical: `${BASE_URL}/`,
-    schema: getLodgingBusinessSchema(),
+    schema: getLodgingBusinessSchema(HOMESTAY_FAQS),
     content: `
       ${renderHeader()}
       <main class="pt-24">
         <section class="max-w-7xl mx-auto px-4 sm:px-8 py-12">
-          <p class="text-xs font-semibold text-[#3A4B3D] mb-2 uppercase tracking-wider">Ministry of Tourism Approved • A Quiet Sanctuary in Neyyoor</p>
-          <h1 class="text-4xl sm:text-6xl font-serif text-[#1F2421] mb-6">Restful Homestay Experience in Kanyakumari</h1>
-          <p class="text-base sm:text-lg text-[#5D645E] max-w-2xl leading-relaxed mb-8">
-            Experience hand-carved king suites, soothing sea breezes, 24/7 power backup, and verdant flowering gardens in Neyyoor, Tamil Nadu. Just 2 minutes (750 m) from Eraniel Railway Station.
+          <div class="mb-4">
+            <span class="inline-block px-4 py-2 rounded-full bg-white/95 text-xs sm:text-[13px] font-medium text-[#222E25] border border-[#EAE5DB] shadow-xs mb-2">Ministry of Tourism Approved</span>
+            <h1 class="sr-only">Family-Run Luxury Homestay in Neyyoor, Kanyakumari – Zion Inn Rooms</h1>
+          </div>
+          <h2 class="text-4xl sm:text-6xl font-serif text-[#1F2421] mb-4">Your quiet<br />sanctuary in<br />Neyyoor</h2>
+          <p class="text-base sm:text-lg text-[#2D352F] max-w-md leading-relaxed mb-8">
+            Comfortable stays. Warm hospitality. A place that feels like home.
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="mt-8 rounded-3xl overflow-hidden aspect-[16/10] sm:aspect-[21/9] bg-[#EAE5DB]/40 border border-[#EAE5DB]">
+            <img 
+              src="/images/hero-banner-v3.webp" 
+              srcset="/images/hero-banner-v3-mobile.webp 768w, /images/hero-banner-v3.webp 1360w"
+              sizes="100vw"
+              alt="Zion Inn Homestay Neyyoor front exterior and lush garden courtyard" 
+              width="1360" 
+              height="896" 
+              loading="eager" 
+              fetchpriority="high" 
+              decoding="async" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="flex flex-wrap gap-4 mt-6">
             <a href="/rooms" class="px-6 py-3 rounded-full bg-[#3A4B3D] text-white font-medium">Explore Rooms</a>
             <a href="/contact" class="px-6 py-3 rounded-full border border-[#3A4B3D] text-[#3A4B3D] font-medium">Contact & Booking</a>
           </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16 border-t border-[#EAE5DB]">
+          <h2 class="text-3xl font-serif text-[#1F2421] mb-2">A Peaceful Homestay in Neyyoor for Families &amp; Travelers</h2>
+          <p class="italic text-base text-[#3A4B3D] mb-4">More than just a stay, it's a feeling.</p>
+          <p class="text-sm text-[#5D645E] leading-relaxed mb-8">
+            Starting from ₹1,000 per night with our two kids stay free policy, Zion Inn is a family-run retreat in Neyyoor crafted for comfort and peace. Situated just 750 m from Eraniel Railway Station, guests enjoy handcrafted king beds, breezy verandas, and quick access to Padmanabhapuram Palace (6.9 km) and Muttom Beach (11.6 km).
+          </p>
         </section>
 
         <section class="max-w-7xl mx-auto px-4 sm:px-8 py-16 border-t border-[#EAE5DB]">
@@ -145,6 +170,21 @@ const routes = [
                 <h3 class="text-lg font-semibold text-[#1F2421]">${a.name}</h3>
                 <p class="text-xs text-[#3A4B3D] font-medium mb-2">${a.distance} • ${a.driveTime}</p>
                 <p class="text-xs text-[#5D645E] leading-relaxed">${a.description}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-4 sm:px-8 py-16 border-t border-[#EAE5DB]">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-serif text-[#1F2421] mb-2">Frequently Asked Questions</h2>
+            <p class="text-sm text-[#5D645E]">Quick, clear answers to common questions about our location, room amenities, transit proximity, and booking policies.</p>
+          </div>
+          <div class="space-y-4 text-left">
+            ${HOMESTAY_FAQS.map(f => `
+              <div class="p-5 bg-white rounded-2xl border border-[#EAE5DB]">
+                <h3 class="text-base font-semibold text-[#1F2421] mb-1">${f.q}</h3>
+                <p class="text-sm text-[#5D645E] leading-relaxed">${f.a}</p>
               </div>
             `).join('')}
           </div>
@@ -207,55 +247,55 @@ const routes = [
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/reception.jpg" alt="Zion Inn Homestay Reception and Lounge" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/reception.jpg" alt="Zion Inn Homestay Reception and Lounge" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Warm Reception &amp; Welcoming Lounge</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/ac-room1.jpg" alt="AC King Bedroom at Zion Inn Homestay" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/ac-room1.webp" alt="AC King Bedroom at Zion Inn Homestay" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">AC King Bedroom with Garden Veranda</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/the-space.jpg" alt="Tranquil garden courtyard at Zion Inn Homestay" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/the-space.webp" alt="Tranquil garden courtyard at Zion Inn Homestay" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Lush Flowering Greenery</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/padmanabhapuram.webp" alt="Padmanabhapuram Palace near Neyyoor" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/padmanabhapuram.webp" alt="Padmanabhapuram Palace near Neyyoor" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Padmanabhapuram Palace (6.9 km)</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/muttom-beach.webp" alt="Muttom Beach and Lighthouse near Neyyoor" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/muttom-beach.webp" alt="Muttom Beach and Lighthouse near Neyyoor" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Muttom Beach &amp; Lighthouse (11.6 km)</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/mathur-aqueduct.webp" alt="Mathur Hanging Aqueduct near Neyyoor" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/mathur-aqueduct.webp" alt="Mathur Hanging Aqueduct near Neyyoor" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Mathur Hanging Aqueduct (16.2 km)</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/poovar-backwaters.webp" alt="Poovar Backwaters & Boating" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/poovar-backwaters.webp" alt="Poovar Backwaters & Boating" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Poovar Backwaters &amp; Boating</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/thirparappu-waterfalls.webp" alt="Thirparappu Waterfalls" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/thirparappu-waterfalls.webp" alt="Thirparappu Waterfalls" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Thirparappu Waterfalls</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/kalikesam-forest.jpeg" alt="Kalikesam Forest & River" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/kalikesam-forest.jpeg" alt="Kalikesam Forest & River" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Kalikesam Forest &amp; River</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/sanguthurai-beach.jpg" alt="Sanguthurai Beach" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/sanguthurai-beach.jpg" alt="Sanguthurai Beach" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Sanguthurai Beach</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/sothavilai-beach.jpg" alt="Sothavilai Beach" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/sothavilai-beach.jpg" alt="Sothavilai Beach" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Sothavilai Beach</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/kanyakumari-rock.jpeg" alt="Vivekananda Rock & Thiruvalluvar Statue" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/kanyakumari-rock.jpeg" alt="Vivekananda Rock & Thiruvalluvar Statue" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Vivekananda Rock &amp; Thiruvalluvar Statue</figcaption>
           </figure>
           <figure class="p-2 bg-white rounded-2xl border border-[#EAE5DB]">
-            <img src="/images/suchindram-temple.jpg" alt="Suchindram Thanumalayan Temple" class="w-full h-48 object-cover rounded-xl" />
+            <img src="/images/suchindram-temple.jpg" alt="Suchindram Thanumalayan Temple" width="400" height="250" loading="lazy" decoding="async" class="w-full h-48 object-cover rounded-xl" />
             <figcaption class="text-xs text-[#5D645E] mt-2 text-center">Suchindram Thanumalayan Temple</figcaption>
           </figure>
         </div>

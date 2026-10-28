@@ -67,9 +67,10 @@ export default function SurroundingGuide() {
           href="https://www.google.com/maps/search/tourist+attractions+near+Neyyoor,+Tamil+Nadu" 
           target="_blank" 
           rel="noopener noreferrer"
+          aria-label="Explore nearby tourist attractions near Neyyoor on Google Maps"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-[#3A4B3D] hover:text-[#2D3B30] mt-3 sm:mt-0 group"
         >
-          <span>View on Google Maps</span>
+          <span>Explore Nearby Attractions on Google Maps</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
         </a>
       </motion.div>
@@ -108,14 +109,26 @@ export default function SurroundingGuide() {
                 transition: { duration: 0.5, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }
               }
             }}
-            className="flex flex-col bg-white rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer text-left"
+            role="button"
+            tabIndex={0}
+            aria-label={`View attraction details for ${item.name}`}
+            className="flex flex-col bg-white rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-sm hover:shadow-md transition-all duration-300 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[#3A4B3D]"
             onClick={() => setSelectedAttraction(item)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedAttraction(item);
+              }
+            }}
           >
             {/* Attraction Image */}
             <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE5DB]/40">
               <img 
                 src={item.image} 
                 alt={item.name} 
+                width="600"
+                height="450"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-104"
                 loading="lazy"
               />

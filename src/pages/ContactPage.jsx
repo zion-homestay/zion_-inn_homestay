@@ -223,10 +223,12 @@ export default function ContactPage({
                 {/* Guest Name & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                    <label htmlFor="contact-full-name" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                       Your Full Name *
                     </label>
                     <input
+                      id="contact-full-name"
+                      name="name"
                       type="text"
                       required
                       placeholder="e.g. Arun Kumar"
@@ -237,10 +239,12 @@ export default function ContactPage({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                    <label htmlFor="contact-phone" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                       WhatsApp / Phone Number *
                     </label>
                     <input
+                      id="contact-phone"
+                      name="phone"
                       type="tel"
                       required
                       placeholder="e.g. +91 98470 12345"
@@ -254,12 +258,15 @@ export default function ContactPage({
                 {/* Dates & Guests */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                    <label htmlFor="contact-checkin-date" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                       Check-in Date
                     </label>
                     <div className="flex items-center gap-2 px-3.5 py-3 rounded-2xl bg-[#FBF9F5] border border-[#EAE5DB]">
                       <Calendar className="w-4 h-4 text-[#3A4B3D] shrink-0" strokeWidth={1.5} />
                       <input
+                        id="contact-checkin-date"
+                        name="checkInDate"
+                        aria-label="Check-in Date"
                         type="date"
                         value={checkInDate}
                         onChange={(e) => setCheckInDate(e.target.value)}
@@ -269,12 +276,15 @@ export default function ContactPage({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                    <label htmlFor="contact-checkout-date" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                       Check-out Date
                     </label>
                     <div className="flex items-center gap-2 px-3.5 py-3 rounded-2xl bg-[#FBF9F5] border border-[#EAE5DB]">
                       <Calendar className="w-4 h-4 text-[#3A4B3D] shrink-0" strokeWidth={1.5} />
                       <input
+                        id="contact-checkout-date"
+                        name="checkOutDate"
+                        aria-label="Check-out Date"
                         type="date"
                         value={checkOutDate}
                         onChange={(e) => setCheckOutDate(e.target.value)}
@@ -284,12 +294,15 @@ export default function ContactPage({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                    <label htmlFor="contact-guest-count" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                       Number of Guests
                     </label>
                     <div className="flex items-center gap-2 px-3.5 py-3 rounded-2xl bg-[#FBF9F5] border border-[#EAE5DB]">
                       <Users className="w-4 h-4 text-[#3A4B3D] shrink-0" strokeWidth={1.5} />
                       <select
+                        id="contact-guest-count"
+                        name="guestCount"
+                        aria-label="Number of Guests"
                         value={guestCount}
                         onChange={(e) => setGuestCount(Number(e.target.value))}
                         className="bg-transparent border-none p-0 text-xs text-[#1F2421] font-medium focus:outline-none w-full cursor-pointer"
@@ -306,10 +319,13 @@ export default function ContactPage({
 
                 {/* Room Preference */}
                 <div>
-                  <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                  <label htmlFor="contact-room-type" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                     Room Preference
                   </label>
                   <select
+                    id="contact-room-type"
+                    name="roomType"
+                    aria-label="Select Room Type"
                     value={formData.roomType}
                     onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
                     className="w-full px-4 py-3 rounded-2xl bg-[#FBF9F5] border border-[#EAE5DB] text-xs sm:text-sm text-[#1F2421] focus:outline-none focus:border-[#3A4B3D] cursor-pointer"
@@ -322,10 +338,13 @@ export default function ContactPage({
 
                 {/* Message / Special Needs */}
                 <div>
-                  <label className="block text-xs font-semibold text-[#2C332E] mb-1.5">
+                  <label htmlFor="contact-notes" className="block text-xs font-semibold text-[#2C332E] mb-1.5">
                     Questions or Special Notes (Optional)
                   </label>
                   <textarea
+                    id="contact-notes"
+                    name="message"
+                    aria-label="Special requests or message"
                     rows={3}
                     placeholder="e.g. Need station pickup from Eraniel, traveling with elderly parent, early check-in requested..."
                     value={formData.message}

@@ -50,14 +50,26 @@ export default function RoomShowcase({ rooms, onSelectRoom, onQuickInquire, onVi
                 transition: { duration: 0.5, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }
               }
             }}
-            className="flex flex-col bg-white rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#3A4B3D]/30 hover:-translate-y-1 transition-all duration-300 group cursor-pointer text-left"
+            role="button"
+            tabIndex={0}
+            aria-label={`View full details for ${room.name}`}
+            className="flex flex-col bg-white rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#3A4B3D]/30 hover:-translate-y-1 transition-all duration-300 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[#3A4B3D]"
             onClick={() => onSelectRoom(room)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onSelectRoom(room);
+              }
+            }}
           >
             {/* Room Image */}
             <div className="relative aspect-[16/10] overflow-hidden bg-[#EAE5DB]/40">
               <img 
                 src={room.image} 
                 alt={room.name} 
+                width="800"
+                height="500"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
