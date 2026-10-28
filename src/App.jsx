@@ -4,13 +4,11 @@ import MobileNavDrawer from './components/MobileNavDrawer';
 import Hero from './components/Hero';
 import AboutSpace from './components/AboutSpace';
 import RoomShowcase from './components/RoomShowcase';
-import RoomDetailDrawer from './components/RoomDetailDrawer';
 import Amenities from './components/Amenities';
 import SurroundingGuide from './components/SurroundingGuide';
 import BookingContact from './components/BookingContact';
 import HomeFaq from './components/HomeFaq';
 import MobileStickyBar from './components/MobileStickyBar';
-import StoryModal from './components/StoryModal';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import { 
@@ -21,7 +19,9 @@ import {
 } from './data/seoSchemas';
 import { INITIAL_ROOMS, HOMESTAY_FAQS } from './data/homestayData';
 
-// Code-split non-home secondary pages for minimal initial bundle and zero TBT
+// Code-split modals and non-home secondary pages for minimal initial bundle and zero TBT
+const RoomDetailDrawer = lazy(() => import('./components/RoomDetailDrawer'));
+const StoryModal = lazy(() => import('./components/StoryModal'));
 const RoomsPage = lazy(() => import('./pages/RoomsPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
@@ -310,22 +310,30 @@ export default function App() {
         )}
       </main>
 
-      {/* Room Detail Drawer */}
-      <RoomDetailDrawer 
-        key={selectedRoomForDrawer?.id || 'room-drawer'}
-        room={selectedRoomForDrawer}
-        isOpen={Boolean(selectedRoomForDrawer)}
-        onClose={() => setSelectedRoomForDrawer(null)}
-        checkInDate={checkInDate}
-        checkOutDate={checkOutDate}
-        guestCount={guestCount}
-      />
+      {/* Room Detail Drawer (Lazy loaded on demand) */}
+      {selectedRoomForDrawer && (
+        <Suspense fallback={null}>
+          <RoomDetailDrawer 
+            key={selectedRoomForDrawer?.id || 'room-drawer'}
+            room={selectedRoomForDrawer}
+            isOpen={Boolean(selectedRoomForDrawer)}
+            onClose={() => setSelectedRoomForDrawer(null)}
+            checkInDate={checkInDate}
+            checkOutDate={checkOutDate}
+            guestCount={guestCount}
+          />
+        </Suspense>
+      )}
 
-      {/* Homestay Story Modal */}
-      <StoryModal 
-        isOpen={isStoryOpen}
-        onClose={() => setIsStoryOpen(false)}
-      />
+      {/* Homestay Story Modal (Lazy loaded on demand) */}
+      {isStoryOpen && (
+        <Suspense fallback={null}>
+          <StoryModal 
+            isOpen={isStoryOpen}
+            onClose={() => setIsStoryOpen(false)}
+          />
+        </Suspense>
+      )}
 
       {/* Mobile Sticky Action Bar (< 768px) */}
       <MobileStickyBar />

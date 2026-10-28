@@ -1,26 +1,19 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, Heart, Shield, MapPin } from 'lucide-react';
-import { modalTransition } from '../utils/animations';
 
 export default function StoryModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-4 sm:p-6"
-        onClick={onClose}
-      >
-        <div className="min-h-full flex items-center justify-center py-6 sm:py-10">
-          <motion.div
-            variants={modalTransition}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#FBF9F5] max-w-xl w-full rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-2xl p-6 sm:p-8 text-left my-auto"
-          >
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-4 sm:p-6 transition-opacity duration-300"
+      onClick={onClose}
+    >
+      <div className="min-h-full flex items-center justify-center py-6 sm:py-10">
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="bg-[#FBF9F5] max-w-xl w-full rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-2xl p-6 sm:p-8 text-left my-auto transition-all duration-300 transform"
+        >
             <div className="flex items-start justify-between gap-3 pb-4 border-b border-[#EAE5DB]">
               <div className="flex-1 pr-2">
                 <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#5D645E] font-semibold block mb-1">
@@ -73,9 +66,8 @@ export default function StoryModal({ isOpen, onClose }) {
               Close
             </button>
           </div>
-        </motion.div>
         </div>
       </div>
-    </AnimatePresence>
+    </div>
   );
 }

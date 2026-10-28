@@ -7,13 +7,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const imagesDir = path.resolve(__dirname, '../public/images');
 
-// Helper to iteratively achieve target size if needed while maintaining maximum quality
+// Helper to iteratively achieve target size while maintaining maximum visual quality
 async function compressToTarget(inputBufferOrPath, initialOptions, targetBytes) {
   let quality = initialOptions.quality || 76;
   let width = initialOptions.width;
   let bestBuffer = null;
 
-  while (quality >= 40) {
+  while (quality >= 38) {
     const pipeline = sharp(inputBufferOrPath);
     if (width) {
       pipeline.resize({ width, height: initialOptions.height, fit: initialOptions.fit || 'inside', withoutEnlargement: true });
@@ -24,8 +24,8 @@ async function compressToTarget(inputBufferOrPath, initialOptions, targetBytes) 
       return { buffer: buf, finalQuality: quality, finalWidth: width };
     }
     quality -= 3;
-    if (quality < 55 && width && width > 520) {
-      width = Math.round(width * 0.92);
+    if (quality < 55 && width && width > 420) {
+      width = Math.round(width * 0.94);
     }
   }
   return { buffer: bestBuffer, finalQuality: quality, finalWidth: width };
@@ -37,9 +37,10 @@ async function optimizeImages() {
   // 1. Hero Banner
   console.log('1. Optimizing Hero Banner...');
   const heroSrc = path.join(imagesDir, 'hero-banner-v3.png');
+  const heroDesktopPath = path.join(imagesDir, 'hero-banner-v3.webp');
+  const heroMobilePath = path.join(imagesDir, 'hero-banner-v3-mobile.webp');
   if (fs.existsSync(heroSrc)) {
     // Desktop WebP (width 1360, quality 78, target size < 110 KB)
-    const heroDesktopPath = path.join(imagesDir, 'hero-banner-v3.webp');
     const { buffer: desktopBuf } = await compressToTarget(
       heroSrc,
       { width: 1360, quality: 78 },
@@ -48,15 +49,16 @@ async function optimizeImages() {
     fs.writeFileSync(heroDesktopPath, desktopBuf);
     console.log(`  -> Generated hero-banner-v3.webp: ${(fs.statSync(heroDesktopPath).size / 1024).toFixed(1)} KB`);
 
-    // Mobile WebP (width 768, quality 76, target size < 55 KB)
-    const heroMobilePath = path.join(imagesDir, 'hero-banner-v3-mobile.webp');
+    // Mobile WebP (width 680, quality 62, effort 6, target size: 18-22 KiB)
     const { buffer: mobileBuf } = await compressToTarget(
       heroSrc,
-      { width: 768, quality: 76 },
-      55 * 1024
+      { width: 680, quality: 62 },
+      22 * 1024
     );
     fs.writeFileSync(heroMobilePath, mobileBuf);
     console.log(`  -> Generated hero-banner-v3-mobile.webp: ${(fs.statSync(heroMobilePath).size / 1024).toFixed(1)} KB`);
+  } else if (fs.existsSync(heroDesktopPath)) {
+    console.log(`  -> hero-banner-v3.webp already optimized (${(fs.statSync(heroDesktopPath).size / 1024).toFixed(1)} KB)`);
   }
 
   // 2. Logo
@@ -100,16 +102,16 @@ async function optimizeImages() {
     {
       src: 'ac-room1.jpg',
       dest: 'ac-room1.webp',
-      maxWidth: 720,
-      quality: 76,
-      targetKB: 45,
+      maxWidth: 600,
+      quality: 70,
+      targetKB: 20, // Under 20 KiB as specified
     },
     {
       src: 'non-ac room2 view2.jpg',
       dest: 'non-ac-room2-view2.webp',
-      maxWidth: 720,
-      quality: 76,
-      targetKB: 40,
+      maxWidth: 600,
+      quality: 70,
+      targetKB: 20, // Under 20 KiB as specified
     },
   ];
 
@@ -124,35 +126,37 @@ async function optimizeImages() {
       );
       fs.writeFileSync(destPath, buffer);
       console.log(`  -> Generated ${item.dest}: ${(fs.statSync(destPath).size / 1024).toFixed(1)} KB`);
+    } else if (fs.existsSync(destPath)) {
+      console.log(`  -> ${item.dest} already optimized (${(fs.statSync(destPath).size / 1024).toFixed(1)} KB)`);
     } else {
       console.warn(`  ! Source not found: ${item.src}`);
     }
   }
 
   // 4. Resize & Recompress Attraction .webp Cards in-place
-  console.log('4. Resizing & Recompressing Attraction Cards in-place (target < 35 KB)...');
+  console.log('4. Resizing & Recompressing Attraction Cards in-place...');
   const attractionCards = [
-    'thiruvithancode-arappally.webp',
-    'padmanabhapuram.webp',
-    'mathur-aqueduct.webp',
-    'church-of-ascension.webp',
-    'thirparappu-waterfalls.webp',
-    'muttom-beach.webp',
+    { file: 'thiruvithancode-arappally.webp', width: 500, quality: 68, targetKB: 18 },
+    { file: 'padmanabhapuram.webp', width: 500, quality: 68, targetKB: 18 },
+    { file: 'thirparappu-waterfalls.webp', width: 500, quality: 68, targetKB: 18 },
+    { file: 'mathur-aqueduct.webp', width: 560, quality: 70, targetKB: 28 },
+    { file: 'church-of-ascension.webp', width: 560, quality: 70, targetKB: 24 },
+    { file: 'muttom-beach.webp', width: 560, quality: 70, targetKB: 24 },
   ];
 
-  for (const file of attractionCards) {
-    const filePath = path.join(imagesDir, file);
+  for (const item of attractionCards) {
+    const filePath = path.join(imagesDir, item.file);
     if (fs.existsSync(filePath)) {
       const inputBuffer = fs.readFileSync(filePath);
       const { buffer } = await compressToTarget(
         inputBuffer,
-        { width: 680, quality: 74 },
-        35 * 1024
+        { width: item.width, quality: item.quality },
+        item.targetKB * 1024
       );
       fs.writeFileSync(filePath, buffer);
-      console.log(`  -> Recompressed ${file}: ${(fs.statSync(filePath).size / 1024).toFixed(1)} KB`);
+      console.log(`  -> Recompressed ${item.file}: ${(fs.statSync(filePath).size / 1024).toFixed(1)} KB`);
     } else {
-      console.warn(`  ! Attraction image not found: ${file}`);
+      console.warn(`  ! Attraction image not found: ${item.file}`);
     }
   }
 
@@ -163,4 +167,3 @@ optimizeImages().catch((err) => {
   console.error('[optimize-images] Error:', err);
   process.exit(1);
 });
-

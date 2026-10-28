@@ -1,20 +1,12 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 
 export default function AboutSpace({ onOpenStory }) {
   return (
     <section id="about" className="px-4 sm:px-8 max-w-7xl mx-auto py-12 sm:py-20 border-t border-[#EAE5DB]/60">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
         {/* Left Column: Description */}
-        <motion.div 
-          className="lg:col-span-6 flex flex-col items-start text-left"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={subtleFadeUp}
-        >
+        <div className="lg:col-span-6 flex flex-col items-start text-left transition-all duration-500">
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3A4B3D]/10 text-xs font-semibold text-[#3A4B3D] mb-4">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" strokeWidth={2} />
@@ -38,16 +30,10 @@ export default function AboutSpace({ onOpenStory }) {
           >
             Our Story
           </button>
-        </motion.div>
+        </div>
 
         {/* Right Column: Image with Typography Overlay */}
-        <motion.div 
-          className="lg:col-span-6 relative"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={subtleFadeUp}
-        >
+        <div className="lg:col-span-6 relative transition-all duration-500">
           <div className="relative rounded-3xl overflow-hidden shadow-lg border border-[#EAE5DB] bg-[#EAE5DB]/30 aspect-[4/3] group">
             <img 
               src="/images/the-space.webp" 
@@ -74,7 +60,7 @@ export default function AboutSpace({ onOpenStory }) {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

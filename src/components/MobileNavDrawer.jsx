@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 export default function MobileNavDrawer({ 
@@ -17,26 +16,21 @@ export default function MobileNavDrawer({
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/40 z-50 md:hidden backdrop-blur-xs"
-          />
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 bg-black/40 z-50 md:hidden backdrop-blur-xs transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      />
 
-          {/* Drawer */}
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-            className="fixed inset-y-0 right-0 w-[84%] max-w-sm bg-[#FBF9F5] z-50 md:hidden shadow-2xl flex flex-col justify-between p-6 border-l border-[#EAE5DB]"
-          >
+      {/* Drawer */}
+      <div
+        className={`fixed inset-y-0 right-0 w-[84%] max-w-sm bg-[#FBF9F5] z-50 md:hidden shadow-2xl flex flex-col justify-between p-6 border-l border-[#EAE5DB] transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
+        }`}
+      >
             {/* Top Bar */}
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-[#EAE5DB]">
@@ -158,9 +152,7 @@ export default function MobileNavDrawer({
                 </svg>
               </div>
             </div>
-          </motion.div>
+          </div>
         </>
-      )}
-    </AnimatePresence>
-  );
-}
+      );
+    }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
   Wifi, 
@@ -51,26 +50,21 @@ export default function RoomDetailDrawer({
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-50 backdrop-blur-xs"
-          />
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        className={`fixed inset-0 bg-black/50 z-50 backdrop-blur-xs transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      />
 
-          {/* Drawer / Modal Container */}
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-            className="fixed inset-y-0 right-0 w-full max-w-lg bg-[#FBF9F5] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-[#EAE5DB]"
-          >
+      {/* Drawer / Modal Container */}
+      <div
+        className={`fixed inset-y-0 right-0 w-full max-w-lg bg-[#FBF9F5] z-50 shadow-2xl flex flex-col justify-between overflow-y-auto border-l border-[#EAE5DB] transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
+        }`}
+      >
             {/* Header */}
             <div className="sticky top-0 bg-[#FBF9F5]/95 backdrop-blur-sm z-10 px-6 py-4 border-b border-[#EAE5DB] flex items-center justify-between">
               <div>
@@ -238,9 +232,7 @@ export default function RoomDetailDrawer({
                 <span>Book via WhatsApp</span>
               </button>
             </div>
-          </motion.div>
+          </div>
         </>
-      )}
-    </AnimatePresence>
-  );
-}
+      );
+    }

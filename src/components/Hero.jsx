@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Calendar, Users, ChevronRight, Check, ShieldCheck } from 'lucide-react';
 
 export default function Hero({ 
@@ -56,7 +55,7 @@ export default function Hero({
           height="896"
           className="w-full h-full object-cover object-[center_right] sm:object-center"
           loading="eager"
-          decoding="async"
+          decoding="sync"
           fetchPriority="high"
         />
         {/* Soft light gradient on the left for maximum text contrast and legibility */}
@@ -93,12 +92,7 @@ export default function Hero({
         </div>
 
         {/* Floating Search Bar centered horizontally with comfortable width to prevent button overflow */}
-        <motion.div 
-          className="w-full max-w-lg sm:max-w-[620px] mx-auto text-left mb-2 sm:mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.1, 0.25, 1.0] }}
-        >
+        <div className="w-full max-w-lg sm:max-w-[620px] mx-auto text-left mb-2 sm:mb-4">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-full p-2 sm:py-1.5 sm:pl-3.5 sm:pr-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.1)] border border-[#EAE5DB]/90 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-1.5">
             {/* Check-in – Check-out Picker with tight, harmonious alignment and reliable Popover */}
             <div className="relative shrink-0">
@@ -238,7 +232,7 @@ export default function Hero({
               Check Availability
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

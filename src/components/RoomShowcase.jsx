@@ -1,7 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, BedDouble, Wifi, DoorOpen, Bath } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 
 export default function RoomShowcase({ rooms, onSelectRoom, onQuickInquire, onViewAllRooms }) {
   const isTwoRooms = rooms.length === 2;
@@ -9,13 +7,7 @@ export default function RoomShowcase({ rooms, onSelectRoom, onQuickInquire, onVi
   return (
     <section id="rooms" className="px-4 sm:px-8 max-w-7xl mx-auto py-12 sm:py-20 border-t border-[#EAE5DB]/60">
       {/* Section Header */}
-      <motion.div 
-        className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 text-left"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={subtleFadeUp}
-      >
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 text-left transition-all duration-500">
         <div>
           <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#5D645E] mb-2 block">
             ACCOMMODATION
@@ -32,24 +24,13 @@ export default function RoomShowcase({ rooms, onSelectRoom, onQuickInquire, onVi
           <span>Explore all room details & specs</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
         </button>
-      </motion.div>
+      </div>
 
       {/* Rooms Grid: Balanced 2-column on tablet/desktop when 2 rooms exist */}
       <div className={`grid grid-cols-1 ${isTwoRooms ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'} gap-6 sm:gap-8`}>
-        {rooms.map((room, index) => (
-          <motion.div
+        {rooms.map((room) => (
+          <div
             key={room.id}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.5, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }
-              }
-            }}
             role="button"
             tabIndex={0}
             aria-label={`View full details for ${room.name}`}
@@ -179,7 +160,7 @@ export default function RoomShowcase({ rooms, onSelectRoom, onQuickInquire, onVi
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

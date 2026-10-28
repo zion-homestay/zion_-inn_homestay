@@ -19,7 +19,23 @@ if (!fs.existsSync(distDir)) {
   process.exit(1);
 }
 
-const baseTemplate = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
+let baseTemplate = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
+
+// 4. Inline Critical CSS to eliminate render-blocking stylesheet
+const cssLinkRegex = /<link\s+rel="stylesheet"\s+crossorigin\s+href="(\/assets\/index-[^"]+\.css)"\s*\/?>/i;
+const cssMatch = baseTemplate.match(cssLinkRegex);
+if (cssMatch) {
+  const cssHref = cssMatch[1];
+  const cssFilePath = path.join(distDir, cssHref);
+  if (fs.existsSync(cssFilePath)) {
+    const cssContent = fs.readFileSync(cssFilePath, 'utf-8');
+    baseTemplate = baseTemplate.replace(
+      cssMatch[0],
+      `<style id="critical-css">${cssContent}</style>`
+    );
+    console.log(`[prerender] Inlined critical CSS from ${cssHref} (${(Buffer.byteLength(cssContent) / 1024).toFixed(1)} KB) directly into <head>`);
+  }
+}
 
 function renderHeader() {
   return `
@@ -127,7 +143,7 @@ const routes = [
               height="896" 
               loading="eager" 
               fetchpriority="high" 
-              decoding="async" 
+              decoding="sync" 
               class="w-full h-full object-cover"
             />
           </div>
@@ -437,6 +453,17 @@ for (const route of routes) {
       '<div id="root"></div>',
       `<div id="root">${route.content}</div>`
     );
+  }
+
+  // Ensure zero initial opacity in static SSR output
+  html = html.replace(/style="([^"]*?)opacity:\s*0;?([^"]*?)"/gi, (match, before, after) => {
+    const remaining = (before + after).trim();
+    return remaining ? `style="${remaining}"` : '';
+  });
+
+  // On the home page, strip modulepreload for vendor-motion so it is not in the critical path
+  if (route.path === '/') {
+    html = html.replace(/<link\s+rel="modulepreload"\s+crossorigin\s+href="\/assets\/vendor-motion-[^"]+\.js"\s*\/?>/i, '');
   }
 
   // Ensure output directory exists and write file

@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, ExternalLink } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 import { ATTRACTIONS_LIST } from '../data/homestayData';
 
 export default function SurroundingGuide() {
@@ -47,13 +45,7 @@ export default function SurroundingGuide() {
   return (
     <section id="location" className="px-4 sm:px-8 max-w-7xl mx-auto py-12 sm:py-20 border-t border-[#EAE5DB]/60">
       {/* Section Header */}
-      <motion.div 
-        className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 text-left"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={subtleFadeUp}
-      >
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 text-left transition-all duration-500">
         <div>
           <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421]">
             Explore Nearby Attractions
@@ -73,7 +65,7 @@ export default function SurroundingGuide() {
           <span>Explore Nearby Attractions on Google Maps</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
         </a>
-      </motion.div>
+      </div>
 
       {/* Category Filter Pills */}
       <div className="flex flex-wrap items-center gap-2 mb-8 sm:mb-10">
@@ -95,20 +87,9 @@ export default function SurroundingGuide() {
 
       {/* Attractions Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {filteredAttractions.map((item, index) => (
-          <motion.div
+        {filteredAttractions.map((item) => (
+          <div
             key={item.id}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.5, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1.0] }
-              }
-            }}
             role="button"
             tabIndex={0}
             aria-label={`View attraction details for ${item.name}`}
@@ -165,7 +146,7 @@ export default function SurroundingGuide() {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 

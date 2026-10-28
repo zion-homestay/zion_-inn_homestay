@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 import { HOMESTAY_FAQS } from '../data/homestayData';
 
 export default function HomeFaq() {
@@ -9,13 +7,7 @@ export default function HomeFaq() {
 
   return (
     <section id="faq" className="px-4 sm:px-8 max-w-4xl mx-auto py-12 sm:py-20 border-t border-[#EAE5DB]/60">
-      <motion.div
-        className="text-center mb-8 sm:mb-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={subtleFadeUp}
-      >
+      <div className="text-center mb-8 sm:mb-12 transition-all duration-500">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3A4B3D]/10 text-xs font-semibold text-[#3A4B3D] mb-3">
           <HelpCircle className="w-3.5 h-3.5 text-emerald-700" strokeWidth={2} />
           <span>Help &amp; Answers</span>
@@ -26,7 +18,7 @@ export default function HomeFaq() {
         <p className="text-sm sm:text-base text-[#5D645E] max-w-xl mx-auto leading-relaxed">
           Quick, clear answers to common questions about our location, room amenities, transit proximity, and booking policies.
         </p>
-      </motion.div>
+      </div>
 
       <div className="space-y-3.5 text-left">
         {HOMESTAY_FAQS.map((faq, idx) => {

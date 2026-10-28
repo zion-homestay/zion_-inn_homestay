@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { 
   MessageCircle, 
   Phone, 
@@ -7,7 +6,6 @@ import {
   ExternalLink, 
   Check 
 } from 'lucide-react';
-import { subtleFadeUp } from '../utils/animations';
 import { CONTACT_INFO } from '../data/homestayData';
 
 export default function BookingContact({ 
@@ -57,13 +55,7 @@ export default function BookingContact({
   return (
     <section id="contact" className="px-4 sm:px-8 max-w-7xl mx-auto py-12 sm:py-20 border-t border-[#EAE5DB]/60">
       {/* Section Header */}
-      <motion.div 
-        className="text-left mb-8 sm:mb-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={subtleFadeUp}
-      >
+      <div className="text-left mb-8 sm:mb-12 transition-all duration-500">
         <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#1F2421] mb-3">
           Ready to plan your stay?
         </h2>
@@ -89,18 +81,12 @@ export default function BookingContact({
             <span>Call {CONTACT_INFO.phone1}</span>
           </button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Grid: Quick Booking Form + Map & Address */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         {/* Left Column: Quick Booking Form Card (Mockup Style) */}
-        <motion.div 
-          className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-[#EAE5DB] shadow-sm text-left flex flex-col justify-between"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={subtleFadeUp}
-        >
+        <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-[#EAE5DB] shadow-sm text-left flex flex-col justify-between transition-all duration-500">
           <div>
             <h3 className="font-editorial text-2xl font-medium text-[#1F2421] mb-1">
               Quick Booking
@@ -182,16 +168,10 @@ export default function BookingContact({
             </span>
             <span>Avg reply: &lt; 15 mins</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Column: Stylized Map & Contact Details Card */}
-        <motion.div 
-          className="lg:col-span-6 flex flex-col justify-between gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={subtleFadeUp}
-        >
+        <div className="lg:col-span-6 flex flex-col justify-between gap-6 transition-all duration-500">
           {/* Stylized Google Map Preview Widget */}
           <div className="relative rounded-3xl overflow-hidden border border-[#EAE5DB] shadow-sm bg-stone-100 aspect-[16/9] group">
             {/* Embedded interactive styled OpenStreetMap / Google Maps iframe */}
@@ -248,7 +228,7 @@ export default function BookingContact({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
